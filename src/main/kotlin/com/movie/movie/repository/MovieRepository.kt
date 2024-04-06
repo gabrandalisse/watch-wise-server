@@ -2,6 +2,8 @@ package com.movie.movie.repository
 
 import com.movie.movie.model.Movie
 import com.movie.movie.service.MovieService
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Repository
 
 interface IRead<T> {
   fun findAll(): List<T>
@@ -14,8 +16,11 @@ interface IWrite<T> {
   fun delete(t: T): T
 }
 
+@Repository
 class MovieRepository : IRead<Movie> {
-   private val movieService: MovieService = MovieService();
+
+  @Autowired
+  private lateinit var movieService: MovieService
 
   override fun findAll(): List<Movie> {
     return emptyList()
